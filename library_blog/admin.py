@@ -1,3 +1,4 @@
 from django.contrib import admin
+from library_blog.models import library_model
 
-# Register your models here.
+admin.site.register(library_model)
