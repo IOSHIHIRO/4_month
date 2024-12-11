@@ -22,5 +22,23 @@ class library_model(models.Model):
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
 
+
     def __str__(self):
         return self.title
+
+class Review(models.Model):
+    GENRE = (
+        ('⭐','⭐'),
+        ('⭐⭐','⭐⭐'),
+        ('⭐⭐⭐','⭐⭐⭐'),
+        ('⭐⭐⭐⭐','⭐⭐⭐⭐'),
+        ('⭐⭐⭐⭐⭐','⭐⭐⭐⭐⭐')
+    )
+    library = models.ForeignKey(library_model, on_delete=models.CASCADE, related_name='reviews')
+    created_at = models.DateField(auto_now_add=True)
+    text_review = models.TextField(verbose_name='Напишите отзыв')
+    start = models.CharField(max_length=100, choices=GENRE, verbose_name='Выберите отзыв')
+
+
+    def __str__(self):
+        return f'{self.library}-{self.start}'
