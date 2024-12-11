@@ -1,3 +1,6 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'main_page/liter_detail.css' %}">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +8,20 @@
     <title>Title</title>
 </head>
 <body>
+<div class="shadowbox">
 
-<a href="{% url 'books_for_youth' %}">Книги для молодежи</a>
+<p align="center">
+<a href="{% url 'books_for_youth' %}">Книги для молодежи<br></a>
 <a href="{% url 'children_books' %}">Книги для детей</a>
+</p>
 
 {% for i in books %}
 
-<p>{{i.name}}</p>
-<p>{{i.pages}}</p>
+<p align="center">Название книги: <br>{{i.name}} <br> цена: {{i.pages}}</p>
+
+
 
 {% endfor %}
+    </div>
 </body>
 </html>
