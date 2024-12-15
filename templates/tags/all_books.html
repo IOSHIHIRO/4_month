@@ -14,14 +14,14 @@
 <a href="{% url 'books_for_youth' %}">Книги для молодежи<br></a>
 <a href="{% url 'children_books' %}">Книги для детей</a>
 </p>
-
 {% for i in books %}
 
 <p align="center">Название книги: <br>{{i.name}} <br> цена: {{i.pages}}</p>
 
-
-
 {% endfor %}
+
+
+
     </div>
 </body>
 </html>
