@@ -1,5 +1,4 @@
 from django.urls import path
-from pkg_resources.extern import names
 
 from . import views
 
@@ -9,6 +8,7 @@ urlpatterns = [
     path('about_me/', views.about_me, name='about_me'),
     path('about_pets/', views.about_pets, name='about_pets'),
     path('system_time/', views.system_time, name='system_time'),
-    path('', views.comment_list_view, name='library_comment'),
+    path('comment/', views.comment_list_view, name='library_comment'),
     path('comment_view/', views.comment_view, name='comment_view'),
+    path('search/', views.SearchView.as_view(), name='search'),
 ]

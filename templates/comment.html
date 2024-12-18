@@ -1,6 +1,11 @@
-<form action="/comment_view/" method="POST" enctype="multipart/form-data">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Добавить комментарии</button>
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'main_page/liter_detail.css' %}" xmlns="http://www.w3.org/1999/html">
 
+<form action="/comment_view/" method="POST" enctype="multipart/form-data">
+    <div class="shadowbox">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить комментарии</button>
+    </div>
 </form>

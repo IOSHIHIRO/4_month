@@ -1,9 +1,25 @@
+from lib2to3.fixes.fix_input import context
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from datetime import datetime
 from . import models
 from library_blog.models import Review
 from library_blog.forms import LibraryForm
+from django.views import generic
+
+class SearchView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'library_li'
+    paginate_by = 2
+
+    def get_queryset(self):
+        return models.library_model.objects.filter(title__icontains=self.request.GET.get('q'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context
 
 
 
@@ -31,7 +47,7 @@ def comment_list_view(request):
     if request.method == 'GET':
         comment_list = Review.objects.all().order_by('-id')
         context = {'comment_list': comment_list}
-        return render(request, template_name='book.html', context=context)
+        return render(request, template_name='book_detail.html', context=context)
 
 
 def library_list(request):
