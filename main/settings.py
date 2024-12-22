@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'library_blog',
     'books_tags',
     'Basket',
+    'parser_app',
 ]
 
 MIDDLEWARE = [
