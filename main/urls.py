@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('books_tags.urls')),
     path('', include('Basket.urls')),
     path('', include('parser_app.urls')),
+    path('', include('users.urls')),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
