@@ -5,3 +5,4 @@ class BasketForm(forms.ModelForm):
     class Meta:
         model = BasketModel
         fields = '__all__'
+

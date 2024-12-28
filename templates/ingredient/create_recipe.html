@@ -1,0 +1,10 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'main_page/liter_detail.css' %}" xmlns="http://www.w3.org/1999/html">
+<div class="shadowbox">
+<form action="/create_recipe/" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Добавить заказ</button>
+
+</form></div>

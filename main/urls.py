@@ -11,6 +11,7 @@ urlpatterns = [
     path('', include('Basket.urls')),
     path('', include('parser_app.urls')),
     path('', include('users.urls')),
+    path('', include('ingredients.urls')),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

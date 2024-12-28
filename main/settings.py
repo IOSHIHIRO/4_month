@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Basket',
     'parser_app',
     'users',
+    'ingredients'
 ]
 
 MIDDLEWARE = [
