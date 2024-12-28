@@ -1,9 +1,0 @@
-{% load static %}
-{% include 'components/header.html' %}
-<link rel="stylesheet" href="{% static 'main_page/liter_detail.css' %}" xmlns="http://www.w3.org/1999/html">
-<div class="shadowbox">
-  <h1>{{ingredient_id.name}}</h1>
-  <p>{{ingredient_id.quantity}}</p>
-  <p>{{ingredient_id.unit}}</p>
-  <p>{{ingredient_id.recipe}}</p>
-  <a href="{%url '#'%}">Назад</a></div>

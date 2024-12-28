@@ -1,12 +1,17 @@
 from django import forms
-from ingredients.models import Ingredient, Recipe
+from .models import Recipe, Ingredient, Collection
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = '__all__'
+        fields = ['title', 'description']
 
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
-        fields = '__all__'
+        fields = ['name', 'quantity', 'unit', 'recipe']
+
+class CollectionForm(forms.ModelForm):
+    class Meta:
+        model = Collection
+        fields = ['name', 'recipes']

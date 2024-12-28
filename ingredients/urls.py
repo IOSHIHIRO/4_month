@@ -1,9 +1,12 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
-    path('', views.IngredientListView.as_view(), name='ingredient_list'),
-    path('ingredient_list/<int:id>/',views.IngredientDetailView.as_view(), name='Ingredient_detail'),
-    path('ingredient_list/<int:id>/delete/', views.DeleteIngredientView.as_view(), name='Ingredient_delete'),
-    path('create_recipe/', views.CreateRecipeView.as_view(), name='Ingredient_create'),
+    path('recipe_list/', views.RecipeListView.as_view(), name='recipe_list'),
+    path('recipe/<int:pk>/', views.RecipeDetailView.as_view(), name='recipe_detail'),
+    path('recipe/<int:pk>/delete/', views.DeleteRecipeView.as_view(), name='recipe_delete'),
+    path('recipe/new/', views.RecipeCreateView.as_view(), name='recipe_create'),
+    path('collections/', views.CollectionListView.as_view(), name='collection_list'),
+    path('collections/new/', views.CollectionCreateView.as_view(), name='collection_create'),
 ]

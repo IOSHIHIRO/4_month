@@ -1,25 +1,36 @@
 from django.db import models
 
+
 class Recipe(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    title = models.TextField(verbose_name='название рецепта')
+    description = models.CharField(max_length=100, verbose_name='описание рецепта')
 
     def __str__(self):
         return self.title
 
-
 class Ingredient(models.Model):
-    UNIT_CHOICES = (
-        ('g', 'граммы'),
-        ('kg', 'килограммы'),
-        ('ml', 'миллилитры'),
-        ('l', 'литры'),
-        ('шт', 'штуки'),
+    UNIT = (
+        ("граммы", "граммы"),
+        ("килограммы", "килограммы"),
+        ("миллилитры", "миллилитры"),
+        ("литры", "литры"),
+        ("штуки", "штуки")
     )
-    name = models.CharField(max_length=100)
-    quantity = models.IntegerField(default=10)
-    unit = models.CharField(max_length=10, choices=UNIT_CHOICES, default='шт')
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
+
+    name = models.CharField(max_length=100, verbose_name="название ингредиента", null=True)
+    quantity = models.IntegerField()
+    unit = models.CharField(max_length=50, choices=UNIT, null=True)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    is_optional = models.BooleanField(default=False)
+    calories = models.FloatField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name}-{self.unit}'
+        return f"{self.name} {self.quantity} {self.unit}"
+
+
+class Collection(models.Model):
+    name = models.CharField(max_length=100)
+    recipes = models.ManyToManyField(Recipe, related_name='collections')
+    def __str__(self):
+        return self.name

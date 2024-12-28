@@ -1,41 +1,49 @@
-from django.shortcuts import render, get_object_or_404
-from ingredients.models import Recipe
-from ingredients.forms import RecipeForm, IngredientForm
+from django.shortcuts import render,redirect,get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView
+from .models import Recipe
+from .forms import RecipeForm
+from django.urls import reverse_lazy
+from .forms import CollectionForm
 from django.views import generic
 
 
-class CreateRecipeView(generic.CreateView):
-    template_name = 'ingredient/create_recipe.html'
-    form_class = IngredientForm
-    success_url = '/ingredient_list/'
 
-    def form_valid(self, form):
-        print(form.cleaned_data)
-        return super(CreateRecipeView, self).form_valid(form)
-
-class IngredientListView(generic.ListView):
-    template_name = 'ingredient/ingredient_list.html'
-    context_object_name = 'ingredient_list'
+class RecipeListView(ListView):
     model = Recipe
+    template_name = 'recipes/recipe_list.html'
+    context_object_name = 'recipes'
 
-    def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
 
-class IngredientDetailView(generic.DetailView):
-    template_name = 'ingredient/ingredient_detail.html'
-    context_object_name = 'ingredient_id'
+class RecipeDetailView(DetailView):
+    model = Recipe
+    template_name = 'recipes/recipe_detail.html'
+    context_object_name = 'recipe'
 
-    def get_object(self, **kwargs):
-        ingredient_id = self.kwargs.get('id')
-        return get_object_or_404(Recipe, id=ingredient_id)
 
-class DeleteIngredientView(generic.DeleteView):
-    template_name = 'ingredient/delete_ingredient.html'
-    success_url = '/ingredient_list/'
+class RecipeCreateView(CreateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'recipes/recipe_form.html'
+    success_url = reverse_lazy('recipe_list')
+
+
+class CollectionCreateView(CreateView):
+    model = CollectionForm
+    form_class = CollectionForm
+    template_name = 'collections/collection_form.html'
+    success_url = reverse_lazy('collection_list')
+
+
+class CollectionListView(ListView):
+    model = CollectionForm
+    template_name = 'collections/collection_list.html'
+    context_object_name = 'collections'
+
+
+class DeleteRecipeView(generic.DeleteView):
+    template_name = 'recipes/recipe_delete.html'
+    success_url = '/recipe_list/'
 
     def get_object(self, **kwargs):
         basket_id = self.kwargs.get('id')
         return get_object_or_404(Recipe, id=basket_id)
-
-
-

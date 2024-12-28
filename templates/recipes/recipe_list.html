@@ -1,0 +1,11 @@
+<form method="get" action="{% url 'recipe_list' %}">
+    <input type="text" name="q" placeholder="Поиск рецептов..." value="{{ query }}">
+    <button type="submit">Найти</button>
+</form>
+
+<ul>
+    {% for recipe in recipes %}
+        <li><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+        <a href="/recipe/{{recipe.id}}/delete/">Удаление</a>
+    {% endfor %}
+</ul>
