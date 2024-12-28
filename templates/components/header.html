@@ -53,9 +53,20 @@
                 <li class="nav-item">
                     <a class="nav-link enable" href="{% url 'manga_list' %}" style="color: yellow;">Другие книги</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link enable" href="{% url 'recipe_create' %}" style="color: yellow;">Рецепты</a>
+               <li class="nav-item">
+                    <a class="nav-link enable" href="{% url 'recipe_create' %}" style="color: yellow;">создать</a>
                 </li>
+                <li>
+                <li class="nav-item">
+                    <a class="nav-link enable" href="{% url 'recipe_list' %}" style="color: yellow;">все рецепты</a>
+                </li>
+                <li>
+                <li class="nav-item">
+                    <a class="nav-link enable" href="{% url 'collection_create' %}" style="color: yellow;">создать коллекцию</a>
+                </li>
+                <li>
+                <li class="nav-item">
+                    <a class="nav-link enable" href="{% url 'collection_list' %}" style="color: yellow;">коллекции</a>
             </ul>
             <form action="{% url 'search' %}" method="GET" class="d-flex" role="search">
                 <input class="form-control me-2" type='text' name="q" type="search" placeholder="Поиск" aria-label="Поиск">

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Recipe
-from .forms import RecipeForm
+from .forms import RecipeForm, Collection
 from django.urls import reverse_lazy
 from .forms import CollectionForm
 from django.views import generic
@@ -28,17 +28,16 @@ class RecipeCreateView(CreateView):
 
 
 class CollectionCreateView(CreateView):
-    model = CollectionForm
+    model = Collection
     form_class = CollectionForm
     template_name = 'collections/collection_form.html'
     success_url = reverse_lazy('collection_list')
 
 
 class CollectionListView(ListView):
-    model = CollectionForm
+    model = Collection
     template_name = 'collections/collection_list.html'
     context_object_name = 'collections'
-
 
 class DeleteRecipeView(generic.DeleteView):
     template_name = 'recipes/recipe_delete.html'
